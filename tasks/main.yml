@@ -1,0 +1,4 @@
+# file: clojure/tasks/main.yml
+
+- include: binaries.yml
+- include: leiningen.yml

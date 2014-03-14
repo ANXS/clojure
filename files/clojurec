@@ -1,0 +1,36 @@
+#!/bin/sh
+
+dest_dir=.
+warn_reflect=false
+
+if [ $# -eq 0 ] ; then
+    echo "usage: $0 [-d <destination-directory>] [-W/-Wreflect] [-cp/-classpath <classpath>] lib1 lib2 ..."
+    exit 1
+fi
+
+if [ "x$CLASSPATH" = "x" ] ; then
+    extra_classpath=""
+else
+    extra_classpath=":$CLASSPATH"
+fi
+
+while true ; do
+    case "$1" in
+        -d)
+            dest_dir="$2"
+            shift 2 ;;
+        -W | -Wreflect)
+            warn_reflect=true
+            shift ;;
+        -cp | -classpath)
+            extra_classpath=":$2"
+            shift 2 ;;
+        --)
+            shift
+            break ;;
+        *)
+            break ;;
+    esac
+done
+
+exec java -cp /usr/local/clojure/default/clojure.jar:"$dest_dir$extra_classpath" -Dclojure.compile.path="$dest_dir" -Dclojure.compile.warn-on-reflection=$warn_reflect clojure.lang.Compile "$@"

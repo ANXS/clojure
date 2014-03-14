@@ -1,0 +1,18 @@
+# file: clojure/meta/main.yml
+
+galaxy_info:
+  author: pjan vandaele
+  company: Ansibles
+  description: "Install Clojure version(s) and leiningen"
+  min_ansible_version: 1.4
+  license: MIT
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+  - system
+  - development
+
+dependencies:
+  - Ansibles.oracle-jdk

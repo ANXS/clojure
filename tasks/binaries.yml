@@ -1,0 +1,45 @@
+# file: clojure/tasks/binaries.yml
+
+- name: Clojure | Make sure the dependencies are installed
+  apt:
+    pkg: unzip
+    state: present
+
+- name: Clojure | Download Clojure version(s)
+  get_url:
+    url: "http://repo1.maven.org/maven2/org/clojure/clojure/{{item}}/clojure-{{item}}.zip"
+    dest: "/tmp/clojure-{{item}}.zip"
+  with_items: clojure_versions
+
+- name: Clojure | Make sure the directory to hold the Clojure binaries is present
+  file:
+    path: /usr/local/clojure
+    state: directory
+
+- name: Clojure | Unpack the compressed clojure binaries
+  command: unzip /tmp/clojure-{{item}}.zip chdir=/usr/local/clojure creates=/usr/local/clojure/clojure-{{item}}
+  with_items: clojure_versions
+
+- name: Clojure | Create a symlink for the clojure jar
+  file:
+    path: "/usr/local/clojure/clojure-{{item}}/clojure.jar"
+    src: "/usr/local/clojure/clojure-{{item}}/clojure-{{item}}.jar"
+    state: link
+    force: yes
+  with_items: clojure_versions
+
+- name: Clojure | Update the symbolic link to the default clojure version
+  file:
+    path: "/usr/local/clojure/default"
+    src: "/usr/local/clojure/clojure-{{clojure_default_version}}"
+    state: link
+    force: yes
+
+- name: Clojure | Create the clojure/clojurec/clojure-repl scripts
+  file:
+    src: "usr_bin_{{item}}.j2"
+    dest: "/usr/bin/{{item}}"
+    owner: root
+    group: root
+    mode: 0755
+  with_items: ["clojure", "clojurec", "clojure-repl"]

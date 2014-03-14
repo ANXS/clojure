@@ -1,0 +1,5 @@
+# file: clojure/defaults/main.yml
+
+clojure_versions: ["1.5.1"]
+clojure_default_version: "1.5.1"
+
