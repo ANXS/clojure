@@ -8,6 +8,3 @@
     group: root
     mode: 0755
 
-- name: Clojure | Install leiningen
-  command: "export HTTP_CLIENT='curl --insecure -f -L -o'; lein version"
-
