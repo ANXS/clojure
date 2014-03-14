@@ -20,6 +20,16 @@
   command: unzip /tmp/clojure-{{item}}.zip chdir=/usr/local/clojure creates=/usr/local/clojure/clojure-{{item}}
   with_items: clojure_versions
 
+- name: Clojure | Set the directory rights
+  file:
+    path: "/usr/local/clojure/clojure-{{item}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    recurse: yes
+  with_items: clojure_versions
+
 - name: Clojure | Create a symlink for the clojure jar
   file:
     path: "/usr/local/clojure/clojure-{{item}}/clojure.jar"
@@ -36,8 +46,8 @@
     force: yes
 
 - name: Clojure | Create the clojure/clojurec/clojure-repl scripts
-  file:
-    src: "usr_bin_{{item}}.j2"
+  copy:
+    src: "usr_bin_{{item}}"
     dest: "/usr/bin/{{item}}"
     owner: root
     group: root
