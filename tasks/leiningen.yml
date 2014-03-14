@@ -1,1 +1,13 @@
 # file: clojure/tasks/leiningen.yml
+
+- name: Clojure | Download leiningen
+  get_url:
+    url: "https://raw.github.com/technomancy/leiningen/{{clojure_leiningen_version}}/bin/lein"
+    dest: "/usr/local/bin/lein"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Clojure | Install leiningen
+  command: "export HTTP_CLIENT='curl --insecure -f -L -o'; lein version"
+

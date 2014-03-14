@@ -12,6 +12,7 @@ Ansible role which installs [Clojure](http://clojure.org/) and [leiningen](http:
 ```yaml
 clojure_versions: ["1.5.1"]             # A list of clojure versions you want to have installed
 clojure_default_version: "1.5.1"        # The clojure version you want to be the system default
+clojure_leiningen_version: "2.3.4"      # The version of leiningen to install
 ```
 
 
