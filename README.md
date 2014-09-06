@@ -1,4 +1,4 @@
-## Ansibles - clojure [![Build Status](https://travis-ci.org/Ansibles/clojure.png)](https://travis-ci.org/Ansibles/clojure)
+## ANXS - clojure [![Build Status](https://travis-ci.org/ANXS/clojure.png)](https://travis-ci.org/ANXS/clojure)
 
 Ansible role which installs [Clojure](http://clojure.org/) and [leiningen](http://leiningen.org/).
 
@@ -23,4 +23,4 @@ Licensed under the MIT License. See the LICENSE file for details.
 
 #### Feedback, bug-reports, requests, ...
 
-Are [welcome](https://github.com/ansibles/clojure/issues)!
+Are [welcome](https://github.com/ANXS/clojure/issues)!
